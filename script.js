@@ -672,7 +672,7 @@ function parseDateString(dateString) {
     return date;
 }
 
-d3.csv("data.csv", function (d, i) {
+d3.csv("data2.csv", function (d, i) {
     d.StartDate = parseDateString(d.StartDate);
     d.EndDate = parseDateString(d.EndDate);
     d.id = d.SafetyreportID;
