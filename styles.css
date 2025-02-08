@@ -5,7 +5,6 @@ html, body {
     font-family: 'Georgia', 'Times New Roman', Times, serif;
   }
   
-  /* Use flex layout and relative units for the main container */
   #content-container {
     display: flex;
     flex-direction: column;
@@ -17,7 +16,7 @@ html, body {
   h1 {
     margin-top: 0;
     font-size: 2.2rem;
-    color: #000000;
+    color: #000;
   }
   
   h2 {
@@ -27,11 +26,18 @@ html, body {
     font-weight: bold;
   }
   
-  /* Updated button using relative units and positioning */
-  .toggle-structure-button {
-    position: absolute;
-    top: 9%;
-    right: 5%;
+  /* Button group and structural buttons */
+  .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .toggle-structure-button,
+  .toggle-view-button {
+    position: relative;
     padding: 0.75rem 1.5rem;
     font-size: 0.875rem;
     color: #333;
@@ -44,50 +50,73 @@ html, body {
     z-index: 0;
   }
   
-  .toggle-structure-button:hover {
+  .toggle-structure-button:hover,
+  .toggle-view-button:hover {
     background-color: #f4f6f8;
     transform: translateY(-0.125rem);
     box-shadow: 0 0.375rem 0.875rem rgba(0, 0, 0, 0.1);
   }
-    
-  .toggle-structure-button:active {
+  
+  .toggle-structure-button:active,
+  .toggle-view-button:active {
     background-color: #ebedef;
     transform: translateY(0);
     box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.08);
   }
   
+  /* Toggle structure button fixed at top-right */
+  #toggle-structure-btn {
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    z-index: 99999;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    color: #333;
+    background-color: #f9fafc;
+    border: 1px solid #ccd1d9;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.08);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  #toggle-structure-btn:hover {
+    background-color: #f4f6f8;
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0.375rem 0.875rem rgba(0, 0, 0, 0.1);
+  }
+  
+  #toggle-structure-btn:active {
+    background-color: #ebedef;
+    transform: translateY(0);
+    box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Structure Box as a fixed overlay */
   .structure-box {
+    position: absolute;
+    top: 4rem;
+    right: 1rem;
+    width: 90%;
+    max-width: 650px;
+    height: 80rem;
+    z-index: 10000000;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 0.625rem;
+    box-shadow: 0.25rem 0.25rem 0.25rem rgba(0,0,0,0.1),
+                -0.25rem -0.25rem 0.25rem rgba(0,0,0,0.1),
+                0.25rem -0.25rem 0.25rem rgba(0,0,0,0.1),
+                -0.25rem 0.25rem 0.25rem rgba(0,0,0,0.1);
+    overflow: auto;
     opacity: 0;
     visibility: hidden;
     transform: scale(0);
     transform-origin: top right;
     transition: opacity 0.3s ease, transform 0.3s ease;
-    position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid #ccc;
-    padding: 0.625rem;
-    border-radius: 8px;
-    box-shadow: 0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.1),
-                -0.25rem -0.25rem 0.25rem rgba(0, 0, 0, 0.1),
-                0.25rem -0.25rem 0.25rem rgba(0, 0, 0, 0.1),
-                -0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.1);
-    font-size: 0.6875rem;
-    color: #333;
-    width: 90%;
-    max-width: 600px;
-    height: 80rem;
-    z-index: 2000;
-    overflow: auto;
-    display: block;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
   }
-
-  
   
   .structure-box.visible {
     opacity: 1;
@@ -108,8 +137,9 @@ html, body {
     transition: width 0.3s, height 0.3s;
   }
   
+  /* Treemap and general content */
   .label-box {
-    fill: rgba(255, 255, 255, 0);
+    fill: rgba(255,255,255,0);
     stroke: #2d2d2d60;
     stroke-width: 1;
   }
@@ -131,7 +161,6 @@ html, body {
     margin-left: 0.3125rem;
   }
   
-  /* Info panel – not modified */
   #info-panel {
     position: fixed;
     align-items: center;
@@ -140,7 +169,7 @@ html, body {
     max-width: 1200px;
     padding: 0.625rem;
     background-color: #ffffff;
-    box-shadow: 0.125rem 0.125rem 0.625rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0.125rem 0.125rem 0.625rem rgba(0,0,0,0.2);
     border-radius: 12px;
     transition: all 0.3s ease;
   }
@@ -150,7 +179,6 @@ html, body {
     font-weight: bold;
   }
   
-  /* Outcome colors legend */
   #outcome-colors div {
     display: flex;
     align-items: center;
@@ -167,7 +195,7 @@ html, body {
     border-radius: 3px;
   }
   
-  /* Search container */
+  /* Search Container */
   #search-container {
     position: absolute;
     top: 18.3rem;
@@ -193,11 +221,13 @@ html, body {
     transition: box-shadow 0.3s, transform 0.3s;
     margin-left: 0.625rem;
   }
+  
   .info-icon:hover,
   .info-icon:focus {
     transform: scale(1.05);
-    box-shadow: 0 0.1875rem 0.5rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.1875rem 0.5rem rgba(0,0,0,0.15);
   }
+  
   .info-icon::after {
     content: attr(data-tooltip);
     position: absolute;
@@ -216,6 +246,7 @@ html, body {
     white-space: nowrap;
     z-index: 1000;
   }
+  
   .info-icon::before {
     content: "";
     position: absolute;
@@ -230,6 +261,7 @@ html, body {
     transition: opacity 0.3s;
     z-index: 1000;
   }
+  
   .info-icon:hover::after,
   .info-icon:focus::after,
   .info-icon:hover::before,
@@ -245,12 +277,14 @@ html, body {
     border: 1px solid #aaa;
     border-radius: 6px;
     outline: none;
-    box-shadow: inset 0 0.0625rem 0.125rem rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 0.0625rem 0.125rem rgba(0,0,0,0.08);
     transition: border-color 0.3s, box-shadow 0.3s;
   }
+  
   #search-bar::placeholder {
     color: #999;
   }
+  
   #search-bar:focus {
     border-color: #007BFF;
     box-shadow: 0 0 0 0.125rem rgba(0,123,255,0.2);
@@ -268,14 +302,17 @@ html, body {
     z-index: 1000;
     font-size: 0.875rem;
   }
+  
   #search-dropdown strong {
     font-size: 0.875rem;
     color: #333;
   }
+  
   #search-dropdown br {
     line-height: 2.5;
   }
   
+  /* Product Outer, Beating Keyframe */
   .product-outer {
     stroke: #fff;
     stroke-width: 0.0625rem;
@@ -299,6 +336,7 @@ html, body {
     stroke: #000;
   }
   
+  /* Legend Container */
   #legend-container {
     display: flex;
     justify-content: center;
@@ -307,7 +345,7 @@ html, body {
   }
   
   .legend circle, .legend rect {
-    stroke: rgba(0, 0, 0, 0.23);
+    stroke: rgba(0,0,0,0.23);
     stroke-width: 1px;
   }
   
@@ -334,6 +372,7 @@ html, body {
     transition: transform 0.3s ease;
   }
   
+  /* Slider Container / Timeline */
   #slider-container {
     width: 40vw;
     text-align: center;
@@ -377,6 +416,7 @@ html, body {
     transform: scale(1.1);
     box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.3), inset 0 0.0625rem 0.125rem rgba(255,255,255,0.8);
   }
+  
   #report-slider::-webkit-slider-thumb:active {
     transform: scale(1.0);
     box-shadow: 0 0.1875rem 0.3125rem rgba(0,0,0,0.3), inset 0 0.125rem 0.25rem rgba(255,255,255,0.9);
@@ -397,6 +437,7 @@ html, body {
     transform: scale(1.1);
     box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.3), inset 0 0.0625rem 0.125rem rgba(255,255,255,0.8);
   }
+  
   #report-slider::-moz-range-thumb:active {
     transform: scale(1.0);
     box-shadow: 0 0.1875rem 0.3125rem rgba(0,0,0,0.3), inset 0 0.125rem 0.25rem rgba(255,255,255,0.9);
@@ -439,7 +480,7 @@ html, body {
     background-color: #ff7272;
     border: 0.125rem solid #000;
     cursor: pointer;
-    box-shadow: 0 0 0.3125rem rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0.3125rem rgba(0,0,0,0.5);
     z-index: 3;
     transition: left 0.2s ease;
   }
@@ -453,7 +494,7 @@ html, body {
     margin-bottom: 0.3125rem;
     transform: translateX(-50%);
     z-index: 4;
-    background: rgba(255, 255, 255, 0);
+    background: rgba(255,255,255,0);
     padding: 0.125rem 0.3125rem;
     border-radius: 3px;
     font-size: 0.75rem;
@@ -466,7 +507,7 @@ html, body {
     text-align: center;
     padding: 0.375rem;
     font: 0.75rem sans-serif;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0,0,0,0.7);
     color: #fff;
     border: 0;
     border-radius: 4px;
@@ -489,7 +530,7 @@ html, body {
   }
   
   .dosage {
-    color: rgb(128, 128, 0);
+    color: rgb(128,128,0);
     font-weight: bold;
   }
   
@@ -542,9 +583,10 @@ html, body {
     text-anchor: middle;
   }
   
+  /* Sankey Container */
   #sankey-container {
-    align-items: center;
-    margin: 0 6.25rem 0 6.25rem;
+    position: relative;
+    margin: 0 6.25rem;
     margin-top: 5rem;
     width: 90%;
     height: 80vh;
@@ -568,11 +610,11 @@ html, body {
     pointer-events: none;
     text-anchor: left;
     white-space: nowrap;
-    fill: rgba(0, 0, 0, 0.77);
+    fill: rgba(0,0,0,0.77);
   }
   
   .link-label-background {
-    fill: rgb(248, 0, 0);
+    fill: rgb(248,0,0);
   }
   
   .toggle-view-button {
@@ -587,48 +629,71 @@ html, body {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    box-shadow: 0 0.25rem 0.875rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.875rem rgba(0,0,0,0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     z-index: 1;
   }
   
   .toggle-view-button:hover {
     transform: translateY(-0.125rem);
-    box-shadow: 0 0.5rem 1.125rem rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.5rem 1.125rem rgba(0,0,0,0.15);
   }
-    
+  
   .toggle-view-button:active {
     transform: translateY(0);
-    box-shadow: 0 0.25rem 0.875rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.25rem 0.875rem rgba(0,0,0,0.1);
+  }
+  
+  /* Toggled View Layout for Treemap & Sankey */
+  .toggled-view .clearfix {
+    display: flex;              /* Lay them out side-by-side */
+    flex-wrap: wrap;            /* Allow wrapping on smaller screens */
+    width: 100%;
+    gap: 1rem;
+    justify-content: center;    /* Center them horizontally */
+    align-items: flex-start;
+    position: relative;         /* Some spacing at top if needed */
   }
   
   .toggled-view #treemap {
-    float: left;
-    width: calc(50% - 15px);
-    margin-left: 15px;
-    margin-right: 25px;
-    margin-bottom: 35px;
-    margin-top: 80px;
+    /* Remove floats and negative margins */
+    float: none;
+    width: 40%;                 /* 50% of the parent .clearfix */
+    min-height: 50vh;           /* Ensure some min-height to see the treemap */
+    margin-top: 5%;                  /* No extra left/right margins */
+    padding: 0;                 /* Let flex handle spacing */
   }
   
   .toggled-view #sankey-container {
     float: right;
-    width: calc(50% - 15px);
-    margin-top: -85vh;
-    margin-right: 1px;
-    margin-left: 6.25rem;
-    cursor: pointer;
-    margin-bottom: 10px;
+    width: 40%;
+    margin-left: 1%;
+    min-height: 50vh;           /* So it doesn't collapse; adjust to your preference */
     box-shadow: 0.25rem 0.25rem 0.25rem rgba(0,0,0,0.1),
                 -0.25rem -0.25rem 0.25rem rgba(0,0,0,0.1),
-                0.25rem -0.25rem 0.25rem rgba(0,0,0,0.1),
+                 0.25rem -0.25rem 0.25rem rgba(0,0,0,0.1),
                 -0.25rem 0.25rem 0.25rem rgba(0,0,0,0.1);
     overflow: auto;
+    position: relative;         /* So child elements can be positioned inside */
   }
   
   #country-filter-container {
-    text-align: center;
-    margin: 1.25rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;   /* Let it position itself within the container if needed */
+    top: 1rem;            /* Adjust these to taste */
+  }
+
+  /* Country Filter inside Sankey (top) in Toggled View */
+  .toggled-view #country-filter-container {
+    position: absolute;   /* Or keep position:relative if you prefer */
+    top: 2.5rem;
+    left: 75%;
+    transform: translateX(-50%);
+    z-index: 2;
   }
   
   #toggle-country-filter-btn {
@@ -654,22 +719,22 @@ html, body {
     font-size: 0.9375rem;
     color: #444;
     line-height: 1.4;
+    text-align: center;
   }
   
-  .toggled-view #country-filter-container {
-    float: right;
-    width: calc(50% - 15px);
-    margin-top: -96vh;
-    right: 0;
-    margin-bottom: 10px;
-    clear: both;
-  }
-  
-  /* For smaller devices */
-  @media screen and (max-width: 768px) {
-    #treemap, #sankey-container {
+  @media screen and (max-width: 600px) {
+    .button-group {
+      flex-direction: column;
+      align-items: center;
+    }
+    .toggled-view .clearfix {
+      flex-direction: column;
+    }
+    #treemap,
+    #sankey-container,
+    #country-filter-container {
       width: 100%;
-      height: auto;
+      margin: 0.5rem 0;
     }
   }
   
