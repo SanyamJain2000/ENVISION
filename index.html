@@ -1,71 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <!-- Viewport meta tag ensures proper scaling -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ENVISION</title>
-  <link rel="stylesheet" href="styles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js"></script>
-  <script src="https://d3js.org/d3.v6.min.js"></script>
-  <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+    <meta charset="UTF-8">
+    <!-- Viewport meta tag ensures proper scaling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ENVISION</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.6/underscore-min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
 </head>
+
 <body>
-  <div id="content-container">
-    <h1>ENVISION</h1>
-    <h2>(OpenFDA Adverse Drug Events Database Exploratory Interactive Visualization)</h2>
+    <div id="content-container">
+        <h1>ENVISION</h1>
+        <h2>(OpenFDA Adverse Drug Events Database Exploratory Interactive Visualization)</h2>
 
-    <!-- Toggle Structure button now placed outside the main button group -->
-    <button id="toggle-structure-btn" class="toggle-structure-button">
-      Understanding the Structure of OpenFDA Data
-    </button>
+        
+            <button id="toggle-structure-btn" class="toggle-structure-button">
+                Understanding the Structure of OpenFDA Data
+            </button>
 
-    <svg id="circular-slider"></svg>
-    <div id="filter-values">
-      <p><span id="age-value-display"></span></p>
-      <p><span id="weight-value-display"></span></p>
-      <p><span id="sex-value-display"></span></p>
+        <svg id="circular-slider"></svg>
+        <div id="filter-values">
+            <p><span id="age-value-display"></span></p>
+            <p><span id="weight-value-display"></span></p>
+            <p><span id="sex-value-display"></span></p>
+        </div>
+
+        <div id="slider-container">
+            <p id="report-count">1000 reports</p>
+            <input type="range" id="report-slider" min="0" max="1000" value="0" step="100">
+        </div>
+
+        <div id="timeline-container">
+            <div id="timeline-bar"></div>
+        </div>
+
+        <!-- Group the toggle view button in a button group -->
+        <div class="button-group">
+            <button id="toggle-view-btn" class="toggle-view-button">
+                Change View
+            </button>
+        </div>
+
+        <div class="structure-box" id="structure-box">
+            <div class="structure-header">Understanding the Structure of OpenFDA Data</div>
+            <svg id="data-structure-svg"></svg>
+        </div>
+
+        <div id="search-container">
+            <input type="text" id="search-bar" placeholder="Search...">
+            <span class="info-icon" aria-labelledby="tooltip-id" tabindex="0" aria-label="Search Information"
+                data-tooltip="Search for Countries, Medicinal Products, Brand names, Reactions or Indications!">i</span>
+            <div id="search-dropdown" class="dropdown-content" style="display: none;"></div>
+            <div id="search-results"></div>
+        </div>
+
+        <div class="clearfix">
+            <div id="legend-container"></div>
+            <div id="treemap"></div>
+            <div id="country-filter-container">
+                <button id="toggle-country-filter-btn">Global Data</button>
+                <div id="country-filter-message"></div>
+            </div>
+            <div id="sankey-container"></div>
+        </div>
+
+        <script src="script.js"></script>
     </div>
-
-    <div id="slider-container">
-      <p id="report-count">1000 reports</p>
-      <input type="range" id="report-slider" min="0" max="1000" value="0" step="100">
-    </div>
-
-    <div id="timeline-container">
-      <div id="timeline-bar"></div>
-    </div>
-
-    <!-- Group the toggle view button in a button group -->
-    <div class="button-group">
-      <button id="toggle-view-btn" class="toggle-view-button">
-        Change View
-      </button>
-    </div>
-
-    <div class="structure-box" id="structure-box">
-      <div class="structure-header">Understanding the Structure of OpenFDA Data</div>
-      <svg id="data-structure-svg"></svg>
-    </div>
-
-    <div id="search-container">
-      <input type="text" id="search-bar" placeholder="Search...">
-      <span class="info-icon" aria-labelledby="tooltip-id" tabindex="0" aria-label="Search Information" data-tooltip="Search for Countries, Medicinal Products, Brand names, Reactions or Indications!">i</span>
-      <div id="search-dropdown" class="dropdown-content" style="display: none;"></div>
-      <div id="search-results"></div>
-    </div>
-
-    <div class="clearfix">
-      <div id="legend-container"></div>
-      <div id="treemap"></div>
-      <div id="country-filter-container">
-        <button id="toggle-country-filter-btn">Global Data</button>
-        <div id="country-filter-message"></div>
-      </div>
-      <div id="sankey-container"></div>
-    </div>
-
-    <script src="script.js"></script>
-  </div>
 </body>
+
 </html>
