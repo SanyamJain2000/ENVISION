@@ -26,7 +26,6 @@ html, body {
     font-weight: bold;
   }
   
-  /* Button group and structural buttons */
   .button-group {
     display: flex;
     flex-wrap: wrap;
@@ -64,7 +63,6 @@ html, body {
     box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.08);
   }
   
-  /* Toggle structure button fixed at top-right */
   #toggle-structure-btn {
     position: absolute;
     top: 3rem;
@@ -93,7 +91,6 @@ html, body {
     box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.08);
   }
   
-  /* Structure Box as a fixed overlay */
   .structure-box {
     position: absolute;
     top: 4rem;
@@ -137,7 +134,6 @@ html, body {
     transition: width 0.3s, height 0.3s;
   }
   
-  /* Treemap and general content */
   .label-box {
     fill: rgba(255,255,255,0);
     stroke: #2d2d2d60;
@@ -195,7 +191,6 @@ html, body {
     border-radius: 3px;
   }
   
-  /* Search Container */
   #search-container {
     position: absolute;
     top: 18.3rem;
@@ -312,7 +307,6 @@ html, body {
     line-height: 2.5;
   }
   
-  /* Product Outer, Beating Keyframe */
   .product-outer {
     stroke: #fff;
     stroke-width: 0.0625rem;
@@ -336,7 +330,6 @@ html, body {
     stroke: #000;
   }
   
-  /* Legend Container */
   #legend-container {
     display: flex;
     justify-content: center;
@@ -372,7 +365,6 @@ html, body {
     transition: transform 0.3s ease;
   }
   
-  /* Slider Container / Timeline */
   #slider-container {
     width: 40vw;
     text-align: center;
@@ -583,7 +575,6 @@ html, body {
     text-anchor: middle;
   }
   
-  /* Sankey Container */
   #sankey-container {
     position: relative;
     margin: 0 6.25rem;
@@ -644,37 +635,35 @@ html, body {
     box-shadow: 0 0.25rem 0.875rem rgba(0,0,0,0.1);
   }
   
-  /* Toggled View Layout for Treemap & Sankey */
   .toggled-view .clearfix {
-    display: flex;              /* Lay them out side-by-side */
-    flex-wrap: wrap;            /* Allow wrapping on smaller screens */
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
     gap: 1rem;
-    justify-content: center;    /* Center them horizontally */
+    justify-content: center;
     align-items: flex-start;
-    position: relative;         /* Some spacing at top if needed */
+    position: relative;
   }
   
   .toggled-view #treemap {
-    /* Remove floats and negative margins */
     float: none;
-    width: 40%;                 /* 50% of the parent .clearfix */
-    min-height: 50vh;           /* Ensure some min-height to see the treemap */
-    margin-top: 4%;                  /* No extra left/right margins */
-    padding: 0;                 /* Let flex handle spacing */
+    width: 40%;
+    min-height: 50vh;
+    margin-top: 5%;
+    padding: 0;
   }
   
   .toggled-view #sankey-container {
     float: right;
     width: 40%;
     margin-left: 1%;
-    min-height: 50vh;           /* So it doesn't collapse; adjust to your preference */
+    min-height: 50vh;
     box-shadow: 0.25rem 0.25rem 0.25rem rgba(0,0,0,0.1),
                 -0.25rem -0.25rem 0.25rem rgba(0,0,0,0.1),
                  0.25rem -0.25rem 0.25rem rgba(0,0,0,0.1),
                 -0.25rem 0.25rem 0.25rem rgba(0,0,0,0.1);
     overflow: auto;
-    position: relative;         /* So child elements can be positioned inside */
+    position: relative;
   }
   
   #country-filter-container {
@@ -683,13 +672,12 @@ html, body {
     align-items: center;
     justify-content: center;
     margin: 0 auto;
-    position: relative;   /* Let it position itself within the container if needed */
-    top: 1rem;            /* Adjust these to taste */
+    position: relative;
+    top: 1rem;
   }
 
-  /* Country Filter inside Sankey (top) in Toggled View */
   .toggled-view #country-filter-container {
-    position: absolute;   /* Or keep position:relative if you prefer */
+    position: absolute;
     top: 2.5rem;
     left: 75%;
     transform: translateX(-50%);
