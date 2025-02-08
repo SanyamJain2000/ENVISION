@@ -660,7 +660,7 @@ html, body {
     float: none;
     width: 40%;                 /* 50% of the parent .clearfix */
     min-height: 50vh;           /* Ensure some min-height to see the treemap */
-    margin-top: 5%;                  /* No extra left/right margins */
+    margin-top: 4%;                  /* No extra left/right margins */
     padding: 0;                 /* Let flex handle spacing */
   }
   
