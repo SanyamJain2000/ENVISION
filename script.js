@@ -2334,7 +2334,10 @@ function updateFadedState() {
     function toggleStructureBox(event) {
         event.stopPropagation();
         structureBox.classList.toggle('visible');
-    }
+        if (structureBox.classList.contains('visible')) {
+          setTimeout(renderTree, 300);
+        }
+      }
 
     toggleBtn.addEventListener('click', toggleStructureBox);
 
