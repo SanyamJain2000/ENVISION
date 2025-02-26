@@ -1592,28 +1592,28 @@ function showProductInfo(productData) {
 const internalMargin = { left: 10, right: 100 };
 
 function drawSankeyDiagram(nodesData, linksData) {
-    const sankeyWidth = 1300;
-    const sankeyHeight = Math.max(5000, nodesData.length * 150);
-
+    const sankeyContainer = document.getElementById("sankey-container");
+    const sankeyWidth = window.innerWidth * 0.88;
+    const sankeyHeight = Math.max(40000, sankeyContainer.clientHeight || 80000);
+  
     const sankeySvg = d3.select("#sankey-container")
         .append("svg")
         .attr("width", sankeyWidth)
         .attr("height", sankeyHeight)
         .append("g");
-
+  
     const sankey = d3.sankey()
         .nodeWidth(20)
         .nodePadding(20)
         .extent([[internalMargin.left, 1], [sankeyWidth - internalMargin.right, sankeyHeight - 6]])
         .nodeAlign(d3.sankeyCenter)
         .nodeSort(null);
-
-
+  
     let graph = {
         nodes: nodesData.map(d => Object.assign({}, d)),
         links: linksData.map(d => Object.assign({}, d))
     };
-
+  
     drawSankeyGraph(graph);
 
     function drawSankeyGraph(graph) {
@@ -2211,6 +2211,10 @@ function drawSankeyDiagram(nodesData, linksData) {
     }
     
 }
+
+window.addEventListener("resize", () => {
+    drawSankeyDiagram(currentNodesData, currentLinksData);
+  });
 
 function showTooltip(element, text) {
     const tooltip = d3.select("body").append("div")
